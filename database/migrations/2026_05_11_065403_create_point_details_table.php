@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('point_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->constrained('students');
+            $table->foreignId('teacher_id')->constrained('teachers');
+            $table->foreignId('category_id')->constrained('point_categories');
+            $table->integer('initial_point');
+            $table->integer('remaining_point');
             $table->timestamps();
         });
     }
