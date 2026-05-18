@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Point_detail extends Model
+class PointCategory extends Model
 {
      protected $fillable = [
-        'Point_details_name'
+        'Point_categories_name'
     ];
 }
