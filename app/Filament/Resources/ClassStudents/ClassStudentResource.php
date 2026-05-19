@@ -30,7 +30,7 @@ class ClassStudentResource extends Resource
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('class_name')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -40,7 +40,10 @@ class ClassStudentResource extends Resource
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
+                TextEntry::make('class_name'),
+                TextColumn::make('created_at')
+                        ->dateTime()
+                        ->placeholder('-'),
             ]);
     }
 
@@ -49,7 +52,7 @@ class ClassStudentResource extends Resource
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                TextColumn::make('name')
+                TextColumn::make('class_name')
                     ->searchable(),
             ])
             ->filters([

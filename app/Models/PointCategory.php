@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class PointCategory extends Model
 {
      protected $fillable = [
-        'Point_categories_name'
+        'Point_categories_name',
     ];
 }

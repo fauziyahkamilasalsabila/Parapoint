@@ -2,14 +2,15 @@
 
 namespace App\Filament\Resources\Teachers;
 
-use App\Filament\Resources\Teachers\Pages\ManageTeachers;
+use App\Filament\Resources\Teachers\Pages\CreateTeacher;
+use App\Filament\Resources\Teachers\Pages\EditTeacher;
+use App\Filament\Resources\Teachers\Pages\ListTeachers;
+use App\Filament\Resources\Teachers\Pages\ViewTeacher;
+use App\Filament\Resources\Teachers\Schemas\TeacherForm;
+use App\Filament\Resources\Teachers\Schemas\TeacherInfolist;
+use App\Filament\Resources\Teachers\Tables\TeachersTable;
 use App\Models\Teacher;
 use BackedEnum;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -23,45 +24,34 @@ class TeacherResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                //
-            ]);
+        return TeacherForm::configure($schema);
     }
 
     public static function infolist(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                //
-            ]);
+        return TeacherInfolist::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return $table
-            ->columns([
-                //
-            ])
-            ->filters([
-                //
-            ])
-            ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
-                DeleteAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+        return TeachersTable::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => ManageTeachers::route('/'),
+            'index' => ListTeachers::route('/'),
+            'create' => CreateTeacher::route('/create'),
+            'view' => ViewTeacher::route('/{record}'),
+            'edit' => EditTeacher::route('/{record}/edit'),
+            
         ];
     }
 }

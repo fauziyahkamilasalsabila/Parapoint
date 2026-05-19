@@ -19,7 +19,7 @@ class PointDetailForm
                     ->relationship('teacher','id')
                     ->required(),
                  Select::make('category_id')
-                    ->relationship('point_category','id')
+                    ->relationship('pointCategory','id')
                     ->required(),
                  TextInput::make('initial_point')
                     ->required(),
