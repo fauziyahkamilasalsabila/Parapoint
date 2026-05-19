@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\Students\Schemas;
+namespace App\Filament\Resources\Teachers\Schemas;
 
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
-class StudentInfolist
+class TeacherInfolist
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                TextEntry::make('class_id')
-                    ->numeric(),
-                TextEntry::make('name_students'),
-                TextEntry::make('nis'),
+                TextEntry::make('name_teacher'),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

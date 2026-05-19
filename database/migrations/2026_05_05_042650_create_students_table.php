@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('class_id') ->constrained('class_students');
             $table->string('name_students');
-            $table->integer('nis');
+            $table->string('nis');
             $table->timestamps();
         });
     }

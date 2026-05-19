@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Students\Tables;
+namespace App\Filament\Resources\Teachers\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -10,18 +10,13 @@ use Filament\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class StudentsTable
+class TeachersTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('class_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('name_students')
-                    ->searchable(),
-                TextColumn::make('nis')
+                TextColumn::make('name_teacher')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
