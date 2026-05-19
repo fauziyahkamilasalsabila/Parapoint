@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class PointCategory extends Model
 {
      protected $fillable = [
-        'Point_categories_name',
+        'category_type',
+        'amount',
+        'description_point',
     ];
 }
