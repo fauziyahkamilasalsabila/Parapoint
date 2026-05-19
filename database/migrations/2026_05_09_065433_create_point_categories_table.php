@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('point_categories', function (Blueprint $table) {
             $table->id();
-            $table->enum('point_category_time',['add','subtract']);
+            $table->enum('category_type',['add','subtract']);
             $table->integer('amount');
             $table->text('description_point');
             $table->timestamps();
