@@ -16,11 +16,13 @@ class StudentsTable
     {
         return $table
             ->columns([
-                TextColumn::make('class_id')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('id')
+                ->sortable(),
                 TextColumn::make('name_students')
                     ->searchable(),
+                TextColumn::make('classStudent.class_name')
+                ->label('Kelas')
+                ->sortable(),
                 TextColumn::make('nis')
                     ->searchable(),
                 TextColumn::make('created_at')
