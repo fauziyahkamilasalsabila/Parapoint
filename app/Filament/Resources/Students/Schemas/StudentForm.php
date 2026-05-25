@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Students\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -11,9 +12,10 @@ class StudentForm
     {
         return $schema
             ->components([
-                TextInput::make('class_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('class_id')
+                    ->relationship('classStudent', 'class_name')
+                    ->searchable()
+                    ->required(),
                 TextInput::make('name_students')
                     ->required(),
                 TextInput::make('nis')

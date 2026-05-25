@@ -27,6 +27,6 @@ class PointDetail extends Model
 
     public function pointCategory(): BelongsTo
     {
-    return $this->belongsTo(PointCategory::class);
+    return $this->belongsTo(PointCategory::class, 'category_id');
     }
 }

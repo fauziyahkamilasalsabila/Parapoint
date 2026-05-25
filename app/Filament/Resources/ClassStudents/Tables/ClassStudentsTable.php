@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\PointCategories\Tables;
+namespace App\Filament\Resources\ClassStudents\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,7 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class PointCategoriesTable
+class ClassStudentsTable
 {
     public static function configure(Table $table): Table
     {
@@ -17,14 +17,8 @@ class PointCategoriesTable
             ->columns([
                 TextColumn::make('id')
                 ->sortable(),
-                TextColumn::make('category_type')
-                    ->badge(),
-                TextColumn::make('amount')
-                    ->numeric()
-                    ->sortable(),
-                 TextColumn::make('description_point')
-                    ->label('Description')
-                    ->wrap(),
+                TextColumn::make('class_name')
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

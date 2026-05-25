@@ -13,13 +13,16 @@ class PointDetailForm
         return $schema
             ->components([
                 Select::make('student_id')
-                    ->relationship('student','id')
+                    ->relationship('student', 'name_students')
+                    ->searchable()
                     ->required(),
                  Select::make('teacher_id')
-                    ->relationship('teacher','id')
+                    ->relationship('teacher','name_teacher')
+                    ->searchable()
                     ->required(),
                  Select::make('category_id')
-                    ->relationship('pointCategory','id')
+                    ->relationship('pointCategory','description_point')
+                    ->searchable()
                     ->required(),
                  TextInput::make('initial_point')
                     ->required(),
