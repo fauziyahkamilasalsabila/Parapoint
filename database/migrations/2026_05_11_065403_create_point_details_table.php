@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained('students');
             $table->foreignId('teacher_id')->constrained('teachers');
             $table->foreignId('category_id')->constrained('point_categories');
-            $table->integer('initial_point');
-            $table->integer('remaining_point');
+            $table->integer('amount');
+            $table->unsignedInteger('occurrence_number')->default(1);
+            $table->integer('counted_point');
             $table->timestamps();
         });
     }

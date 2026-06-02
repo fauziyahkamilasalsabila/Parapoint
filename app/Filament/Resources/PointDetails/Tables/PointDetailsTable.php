@@ -19,17 +19,32 @@ class PointDetailsTable
                 TextColumn::make('student.name_students')
                     ->label('Nama Siswa')
                     ->searchable(),
+
                 TextColumn::make('teacher.name_teacher')
                     ->label('Guru')
                     ->searchable(),
-                 TextColumn::make('pointCategory.description_point')
-                    ->label('Kategori Point'),
-                TextColumn::make('initial_point')
-                    ->label('Point Awal')
+
+                TextColumn::make('pointCategory.description_point')
+                    ->label('Kategori Point')
+                    ->searchable(),
+
+                TextColumn::make('pointCategory.amount')
+                    ->label('Point (Kategori)')
                     ->numeric(),
-                TextColumn::make('remaining_point')
-                    ->label('Sisa Point')
+
+                TextColumn::make('occurrence_number')
+                    ->label('Jumlah Kejadian')
                     ->numeric(),
+
+                TextColumn::make('counted_point')
+                    ->label('Total Point')
+                    ->numeric(),
+
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->label('Tanggal')
+                    ->sortable(),
+    
 
             ])
             ->filters([

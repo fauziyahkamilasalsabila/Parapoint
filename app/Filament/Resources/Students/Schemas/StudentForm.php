@@ -14,12 +14,17 @@ class StudentForm
             ->components([
                 Select::make('class_id')
                     ->relationship('classStudent', 'class_name')
-                    ->searchable()
+                    ->preload()
                     ->required(),
                 TextInput::make('name_students')
                     ->required(),
                 TextInput::make('nis')
-                    ->required(),
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->validationMessages([
+                    'required' => 'NIS wajib diisi.',
+                    'unique' => 'NIS ini sudah terdaftar dan tidak dapat diinput ulang.',
+                ]),
             ]);
     }
 }

@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('class_id') ->constrained('class_students');
+             $table->string('nis');
             $table->string('name_students');
-            $table->string('nis');
+            $table->integer('current_point')->default(150);
             $table->timestamps();
         });
     }

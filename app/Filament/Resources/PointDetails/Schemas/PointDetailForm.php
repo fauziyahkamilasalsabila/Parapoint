@@ -16,18 +16,43 @@ class PointDetailForm
                     ->relationship('student', 'name_students')
                     ->searchable()
                     ->required(),
+
                  Select::make('teacher_id')
                     ->relationship('teacher','name_teacher')
-                    ->searchable()
+                    ->preload()
                     ->required(),
+
                  Select::make('category_id')
-                    ->relationship('pointCategory','description_point')
-                    ->searchable()
-                    ->required(),
-                 TextInput::make('initial_point')
-                    ->required(),
-                 TextInput::make('remaining_point')
-                    ->required(),
-            ]);
+                     ->relationship('pointCategory', 'description_point')
+                     ->reactive()
+                     ->afterStateUpdated(function ($state, callable $set) {
+                        $category = \App\Models\PointCategory::find($state);
+                        if ($category) {
+                           $set('amount', $category->amount);
+                        }
+                     })
+                     ->required(),
+
+               TextInput::make('amount')
+                     ->disabled()
+                     ->dehydrated(false),
+
+               TextInput::make('occurrence_number')
+                     ->numeric()
+                     ->default(1)
+                     ->reactive()
+                     ->required()
+                      ->afterStateUpdated(function ($state, callable $get, callable $set) {
+
+                        $amount = $get('amount') ?? 0;
+
+                        $set('counted_point', $amount * $state);
+                    }),
+
+               TextInput::make('counted_point')
+                     ->disabled()
+                     ->dehydrated(false),
+    ]);
+            
     }
 }

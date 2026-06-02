@@ -19,4 +19,15 @@ class Student extends Model
         return $this->belongsTo(ClassStudent::class, 'class_id');
     }
 
+    public function pointDetails()
+    {
+        return $this->hasMany(PointDetail::class);
+    }
+
+    public function getCurrentPointAttribute()
+    {
+        return 150 + $this->pointDetails->sum('counted_point');
+    }
+
+
 }
