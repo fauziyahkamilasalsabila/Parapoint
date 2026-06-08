@@ -11,8 +11,9 @@ class PointDetail extends Model
         'student_id',
         'teacher_id',
         'category_id',
-        'initial_point',
-        'remaining_point',
+        'point_amount',
+        'occurrence_number',
+        'counted_point'
     ];
 
     public function student(): BelongsTo
@@ -28,5 +29,32 @@ class PointDetail extends Model
     public function pointCategory(): BelongsTo
     {
     return $this->belongsTo(PointCategory::class, 'category_id');
+    }
+
+     protected static function booted()
+    {
+    static::creating(function ($model) {
+        self::calculatePoint($model);
+    });
+
+    static::updating(function ($model) {
+        self::calculatePoint($model);
+    });
+    }
+
+    private static function calculatePoint(PointDetail $model)
+    {
+        $category = \App\Models\PointCategory::find($model->category_id);
+
+        $amount = $category?->amount ?? 0;
+
+        $total = $amount * ($model->occurrence_number ?? 1);
+
+        if ($category?->category_type === 'subtract') {
+        $total = -$total;
+    }
+
+        $model->point_amount = $amount;
+        $model->counted_point = $total;
     }
 }

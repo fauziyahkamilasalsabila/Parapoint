@@ -12,7 +12,12 @@ class ClassStudentForm
         return $schema
             ->components([
                 TextInput::make('class_name')
-                    ->required(),
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->validationMessages([
+                        'required' => 'Nama kelas wajib diisi.',
+                        'unique' => 'Kelas ini sudah terdaftar dan tidak dapat diinput ulang.',
+                ]),
             ]);
     }
 }
